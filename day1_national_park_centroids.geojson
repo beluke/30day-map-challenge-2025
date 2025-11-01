@@ -1,0 +1,950 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.2733,
+          44.3386
+        ]
+      },
+      "properties": {
+        "name": "Acadia National Park",
+        "state": "Maine",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -170.6789,
+          -14.2583
+        ]
+      },
+      "properties": {
+        "name": "American Samoa National Park",
+        "state": "American Samoa",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.5925,
+          38.7331
+        ]
+      },
+      "properties": {
+        "name": "Arches National Park",
+        "state": "Utah",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.3397,
+          43.8554
+        ]
+      },
+      "properties": {
+        "name": "Badlands National Park",
+        "state": "South Dakota",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.2293,
+          29.1275
+        ]
+      },
+      "properties": {
+        "name": "Big Bend National Park",
+        "state": "Texas",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2102,
+          25.4824
+        ]
+      },
+      "properties": {
+        "name": "Biscayne National Park",
+        "state": "Florida",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.724,
+          38.5754
+        ]
+      },
+      "properties": {
+        "name": "Black Canyon of the Gunnison National Park",
+        "state": "Colorado",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1871,
+          37.593
+        ]
+      },
+      "properties": {
+        "name": "Bryce Canyon National Park",
+        "state": "Utah",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.9298,
+          38.2136
+        ]
+      },
+      "properties": {
+        "name": "Canyonlands National Park",
+        "state": "Utah",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.247,
+          38.367
+        ]
+      },
+      "properties": {
+        "name": "Capitol Reef National Park",
+        "state": "Utah",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.445,
+          32.174
+        ]
+      },
+      "properties": {
+        "name": "Carlsbad Caverns National Park",
+        "state": "New Mexico",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.4179,
+          34.0069
+        ]
+      },
+      "properties": {
+        "name": "Channel Islands National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.781,
+          33.791
+        ]
+      },
+      "properties": {
+        "name": "Congaree National Park",
+        "state": "South Carolina",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.1685,
+          42.8684
+        ]
+      },
+      "properties": {
+        "name": "Crater Lake National Park",
+        "state": "Oregon",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.579,
+          41.2808
+        ]
+      },
+      "properties": {
+        "name": "Cuyahoga Valley National Park",
+        "state": "Ohio",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.8258,
+          36.5323
+        ]
+      },
+      "properties": {
+        "name": "Death Valley National Park",
+        "state": "California, Nevada",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -151.1926,
+          63.1148
+        ]
+      },
+      "properties": {
+        "name": "Denali National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.8628,
+          24.6285
+        ]
+      },
+      "properties": {
+        "name": "Dry Tortugas National Park",
+        "state": "Florida",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.9331,
+          25.2866
+        ]
+      },
+      "properties": {
+        "name": "Everglades National Park",
+        "state": "Florida",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -153.304,
+          67.7814
+        ]
+      },
+      "properties": {
+        "name": "Gates of the Arctic National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.1848,
+          38.6258
+        ]
+      },
+      "properties": {
+        "name": "Gateway Arch National Park",
+        "state": "Missouri",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.718,
+          48.7596
+        ]
+      },
+      "properties": {
+        "name": "Glacier National Park",
+        "state": "Montana",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -136.9002,
+          58.6658
+        ]
+      },
+      "properties": {
+        "name": "Glacier Bay National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.1401,
+          36.107
+        ]
+      },
+      "properties": {
+        "name": "Grand Canyon National Park",
+        "state": "Arizona",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.7055,
+          43.7904
+        ]
+      },
+      "properties": {
+        "name": "Grand Teton National Park",
+        "state": "Wyoming",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -114.243,
+          38.9833
+        ]
+      },
+      "properties": {
+        "name": "Great Basin National Park",
+        "state": "Nevada",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.5918,
+          37.7916
+        ]
+      },
+      "properties": {
+        "name": "Great Sand Dunes National Park",
+        "state": "Colorado",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.5082,
+          35.6532
+        ]
+      },
+      "properties": {
+        "name": "Great Smoky Mountains National Park",
+        "state": "Tennessee, North Carolina",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.8594,
+          31.923
+        ]
+      },
+      "properties": {
+        "name": "Guadalupe Mountains National Park",
+        "state": "Texas",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -156.1552,
+          20.7069
+        ]
+      },
+      "properties": {
+        "name": "Haleakal\u0101 National Park",
+        "state": "Hawaii",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.292,
+          19.4194
+        ]
+      },
+      "properties": {
+        "name": "Hawai\u02bbi Volcanoes National Park",
+        "state": "Hawaii",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -93.0551,
+          34.524
+        ]
+      },
+      "properties": {
+        "name": "Hot Springs National Park",
+        "state": "Arkansas",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.1297,
+          41.6533
+        ]
+      },
+      "properties": {
+        "name": "Indiana Dunes National Park",
+        "state": "Indiana",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.9093,
+          47.9959
+        ]
+      },
+      "properties": {
+        "name": "Isle Royale National Park",
+        "state": "Michigan",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.901,
+          33.8734
+        ]
+      },
+      "properties": {
+        "name": "Joshua Tree National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.0168,
+          58.6138
+        ]
+      },
+      "properties": {
+        "name": "Katmai National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -149.6544,
+          59.922
+        ]
+      },
+      "properties": {
+        "name": "Kenai Fjords National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.6736,
+          36.8879
+        ]
+      },
+      "properties": {
+        "name": "Kings Canyon National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -159.2833,
+          67.3554
+        ]
+      },
+      "properties": {
+        "name": "Kobuk Valley National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -154.3167,
+          60.4167
+        ]
+      },
+      "properties": {
+        "name": "Lake Clark National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.505,
+          40.4977
+        ]
+      },
+      "properties": {
+        "name": "Lassen Volcanic National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.13,
+          37.187
+        ]
+      },
+      "properties": {
+        "name": "Mammoth Cave National Park",
+        "state": "Kentucky",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -108.4907,
+          37.2309
+        ]
+      },
+      "properties": {
+        "name": "Mesa Verde National Park",
+        "state": "Colorado",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.7599,
+          46.8523
+        ]
+      },
+      "properties": {
+        "name": "Mount Rainier National Park",
+        "state": "Washington",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -81.0755,
+          37.8316
+        ]
+      },
+      "properties": {
+        "name": "New River Gorge National Park",
+        "state": "West Virginia",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.3045,
+          48.7114
+        ]
+      },
+      "properties": {
+        "name": "North Cascades National Park",
+        "state": "Washington",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.4983,
+          47.8036
+        ]
+      },
+      "properties": {
+        "name": "Olympic National Park",
+        "state": "Washington",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.7875,
+          35.0666
+        ]
+      },
+      "properties": {
+        "name": "Petrified Forest National Park",
+        "state": "Arizona",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.1817,
+          36.4906
+        ]
+      },
+      "properties": {
+        "name": "Pinnacles National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.9872,
+          41.2132
+        ]
+      },
+      "properties": {
+        "name": "Redwood National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.7081,
+          40.3428
+        ]
+      },
+      "properties": {
+        "name": "Rocky Mountain National Park",
+        "state": "Colorado",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.1667,
+          32.2967
+        ]
+      },
+      "properties": {
+        "name": "Saguaro National Park",
+        "state": "Arizona",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.772,
+          36.4864
+        ]
+      },
+      "properties": {
+        "name": "Sequoia National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.3497,
+          38.53
+        ]
+      },
+      "properties": {
+        "name": "Shenandoah National Park",
+        "state": "Virginia",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.3587,
+          46.979
+        ]
+      },
+      "properties": {
+        "name": "Theodore Roosevelt National Park",
+        "state": "North Dakota",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.7337,
+          18.342
+        ]
+      },
+      "properties": {
+        "name": "Virgin Islands National Park",
+        "state": "U.S. Virgin Islands",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -92.838,
+          48.4837
+        ]
+      },
+      "properties": {
+        "name": "Voyageurs National Park",
+        "state": "Minnesota",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.3257,
+          32.7791
+        ]
+      },
+      "properties": {
+        "name": "White Sands National Park",
+        "state": "New Mexico",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -103.4797,
+          43.6047
+        ]
+      },
+      "properties": {
+        "name": "Wind Cave National Park",
+        "state": "South Dakota",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -142.9858,
+          61.71
+        ]
+      },
+      "properties": {
+        "name": "Wrangell\u2013St. Elias National Park",
+        "state": "Alaska",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.5885,
+          44.428
+        ]
+      },
+      "properties": {
+        "name": "Yellowstone National Park",
+        "state": "Wyoming, Montana, Idaho",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5383,
+          37.8651
+        ]
+      },
+      "properties": {
+        "name": "Yosemite National Park",
+        "state": "California",
+        "designation": "National Park"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -113.0263,
+          37.2982
+        ]
+      },
+      "properties": {
+        "name": "Zion National Park",
+        "state": "Utah",
+        "designation": "National Park"
+      }
+    }
+  ]
+}

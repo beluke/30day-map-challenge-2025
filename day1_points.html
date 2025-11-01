@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 1 (Points)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+  </style>
+</head>
+<body>
+  <h2 style="text-align:center; margin: 12px 0 4px 0; font-family: Verdana, sans-serif;">U.S. National Park Centroids</h2>
+  <div id="map"></div>
+  <div id="legend" style="position: absolute; top: 60px; right: 20px; z-index: 1000; background: white; padding: 8px 14px; border-radius: 6px; box-shadow: 0 1px 4px rgba(0,0,0,0.2); font-size: 14px; font-family: Verdana, sans-serif;">
+    <img src="tree.png" alt="Tree icon" style="vertical-align: middle; width: 18px; height: 22px;"> National Park
+  </div>
+
+  <script>
+    let map = L.map('map').setView([39.8283, -98.5795], 4);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors &copy; Carto'
+    }).addTo(map);
+
+    const treeIcon = L.icon({
+      iconUrl: 'tree.png',
+      iconSize: [22, 27],
+      iconAnchor: [16, 37],
+      popupAnchor: [0, -28]
+    });
+
+    fetch('day1_national_park_centroids.geojson')
+      .then(r => r.json())
+      .then(geojson => {
+        let layer = L.geoJSON(geojson, {
+          pointToLayer: function(feature, latlng) {
+            return L.marker(latlng, { icon: treeIcon });
+          },
+          onEachFeature: function(feature, marker) {
+            let name = feature.properties && feature.properties.name ? feature.properties.name : '';
+            let desc = feature.properties && feature.properties.description ? feature.properties.description : '';
+            marker.bindPopup('<b>' + name + '</b>' + (desc ? '<br>' + desc : ''));
+          }
+        }).addTo(map);
+      });
+  </script>
+</body>
+</html>
