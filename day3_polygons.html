@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 3 - Polygons</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/osmtogeojson@2.2.12/osmtogeojson.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+  </style>
+</head>
+<body>
+  <div id="title" style="
+    position: fixed;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2000;
+    background: rgba(255,255,255,0.95);
+    padding: 14px 32px;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+    font-size: 2em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #ff8800;
+    border: 2px solid #ff8800;
+    text-align: center;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  ">Grand Canyon National Park Boundary</div>
+  <div id="map"></div>
+
+  <script>
+    // 1) Map and Carto Light basemap
+    let map = L.map('map').setView([39.8283, -98.5795], 4);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles © Esri — Sources: Esri, HERE, Garmin, USGS, Intermap, NPS, etc.'
+    }).addTo(map);
+
+    // Add Leaflet-MiniMap CSS and JS
+    var miniMapLink = document.createElement('link');
+    miniMapLink.rel = 'stylesheet';
+    miniMapLink.href = 'https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.css';
+    document.head.appendChild(miniMapLink);
+    var miniMapScript = document.createElement('script');
+    miniMapScript.src = 'https://unpkg.com/leaflet-minimap@3.6.1/dist/Control.MiniMap.min.js';
+    document.head.appendChild(miniMapScript);
+
+    // Wait for MiniMap script to load before adding minimap
+    miniMapScript.onload = function() {
+      var miniLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: ''
+      });
+      new L.Control.MiniMap(miniLayer, { toggleDisplay: true, minimized: false }).addTo(map);
+    };
+
+    // 2) Overpass query for Grand Canyon National Park (precise, only the relation)
+    let query =
+      '[out:json][timeout:60];' +
+      'relation["boundary"="protected_area"]["name"="Grand Canyon National Park"];' +
+      'out body;>;out skel qt;';
+
+    // 3) Fetch data, convert, display
+    fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+      body: 'data=' + encodeURIComponent(query)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(osm){
+      let gj = osmtogeojson(osm);
+      let glaciers = L.geoJSON(gj, {
+        style: function(){
+          return { color: '#ff8800', weight: 2, fillColor: '#ff8800', fillOpacity: 0.4 };
+        },
+        onEachFeature: function(feature, layer){
+          let t = '';
+          if (feature.properties && feature.properties.tags) {
+            let tags = feature.properties.tags;
+            let n = tags.name || '';
+            let en = tags['name:en'] || '';
+            if (n && en) t = n + ' (' + en + ')';
+            else if (n) t = n;
+            else if (en) t = en;
+          }
+          if (t)
+            layer.bindPopup('<b>' + t + '</b><br>National Park');
+        }
+      }).addTo(map);
+
+      let boundsGlacier = glaciers.getBounds();
+      if (boundsGlacier.isValid && boundsGlacier.isValid())
+        map.fitBounds(boundsGlacier, { padding: [20, 20] });
+    });
+
+    // Remove visitor center marker code
+  </script>
+</body>
+</html>
