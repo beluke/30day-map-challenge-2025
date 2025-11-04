@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 4 - My Flights as Great Circles</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/@turf/turf@6.5.0/turf.min.js"></script>
+  <style>
+    html, body, #map { height: 100%; margin: 0; }
+    .leaflet-popup-content { font-size: 1.1em; }
+    .flight-label { font-weight: bold; color: #ffe066; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+    // Airport coordinates (updated to match all codes in flights)
+    const airports = {
+      ATL: [-84.4277, 33.6407], // Atlanta
+      SJO: [-84.2088, 9.9939], // San Jose, Costa Rica
+      CDG: [2.55, 49.0097],    // Paris Charles de Gaulle, France
+      SEA: [-122.3088, 47.4502], // Seattle
+      PHX: [-112.0116, 33.4342], // Phoenix
+      JAX: [-81.6839, 30.4941], // Jacksonville
+      LHR: [-0.4543, 51.4700], // London Heathrow, England
+      LAX: [-118.4085, 33.9416], // Los Angeles
+      ORD: [-87.9073, 41.9742],  // Chicago O'Hare
+      FCO: [12.2508, 41.8003],   // Rome Fiumicino, Italy
+      VLD: [-83.2828, 30.7825],  // Valdosta, GA
+      RAP: [-103.0572, 44.0453]  // Rapid City, SD (for South Dakota)
+    };
+
+    // Define flights as [from, to, label]
+    const flights = [
+        ['ATL', 'FCO', 'Atlanta → Rome, Italy'],
+        ['FCO', 'CDG', 'Rome → France'],
+        ['LHR', 'ATL', 'England → Atlanta'],
+        ['ATL', 'SJO', 'Atlanta → San Jose, Costa Rica'],
+        ['SJO', 'ATL', 'San Jose → Atlanta'],
+        ['ATL', 'SEA', 'Atlanta → Seattle'],
+        ['SEA', 'ORD', 'Seattle → Chicago'],
+        ['ORD', 'LAX', 'Chicago → Los Angeles'],
+        ['LAX', 'SEA', 'Los Angeles → Seattle'],
+        ['PHX', 'ATL', 'Phoenix → Atlanta'],
+        ['ATL', 'VLD', 'Atlanta → Valdosta'],
+        ['ATL', 'RAP', 'Atlanta → South Dakota'],
+        ['RAP', 'ATL', 'South Dakota → Atlanta'],
+        ['JAX', 'PHX', 'Jacksonville → Phoenix'],
+        ['PHX', 'JAX', 'Phoenix → Jacksonville'],
+        ['VLD', 'ATL', 'Valdosta → Atlanta'],
+        ['ATL', 'PHX', 'Atlanta → Phoenix']
+    ];
+
+    // Initialize map with dark basemap
+    let map = L.map('map', { zoomSnap: 0.1 }).setView([35, -30], 3);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      maxZoom: 8,
+      attribution: '&copy; OpenStreetMap contributors &copy; Carto'
+    }).addTo(map);
+
+    // Draw airports
+    Object.entries(airports).forEach(([code, coord]) => {
+      L.circleMarker([coord[1], coord[0]], {
+        radius: 6, color: '#ffe066', fillColor: '#222', fillOpacity: 1, weight: 2
+      }).addTo(map).bindPopup(`<b>${code}</b>`);
+    });
+
+    // Animate all firefly-style great circle flights at once, with back-and-forth flow and a moving dot for the plane
+    function animateFlight(line, color, label) {
+      const coords = line.geometry.coordinates;
+      let i = 0;
+      let forward = true;
+      let poly = L.polyline(coords.map(c => [c[1], c[0]]), {
+        color,
+        weight: 2.2,
+        opacity: 0.7,
+        dashArray: '1,8',
+        lineCap: 'round',
+        className: 'firefly-line'
+      }).addTo(map);
+      // Plane dot marker (smaller and more subtle)
+      let planeMarker = L.circleMarker([coords[0][1], coords[0][0]], {
+        radius: 2.5,
+        color: '#ffe066',
+        fillColor: '#ffe066',
+        fillOpacity: 0.7,
+        weight: 0.5,
+        opacity: 0.8
+      }).addTo(map);
+      poly.bindPopup(`<span class='flight-label'>${label}</span>`);
+      function step() {
+        if (forward) {
+          if (i < coords.length) {
+            planeMarker.setLatLng([coords[i][1], coords[i][0]]);
+            i++;
+          } else {
+            forward = false;
+            i = coords.length - 2;
+          }
+        } else {
+          if (i >= 0) {
+            planeMarker.setLatLng([coords[i][1], coords[i][0]]);
+            i--;
+          } else {
+            forward = true;
+            i = 1;
+          }
+        }
+        setTimeout(step, 28); // slower, more subtle
+      }
+      step();
+    }
+
+    // Draw and animate all flights at once
+    flights.forEach((f) => {
+      const from = airports[f[0]];
+      const to = airports[f[1]];
+      const label = f[2];
+      const line = turf.greatCircle(from, to, { npoints: 120 });
+      animateFlight(line, '#ffe066', label);
+    });
+
+    // Fit map to all points
+    const allCoords = flights.flatMap(f => [airports[f[0]], airports[f[1]]]);
+    const lats = allCoords.map(c => c[1]);
+    const lngs = allCoords.map(c => c[0]);
+    map.fitBounds([
+      [Math.min(...lats), Math.min(...lngs)],
+      [Math.max(...lats), Math.max(...lngs)]
+    ], { padding: [30, 30] });
+  </script>
+</body>
+</html>
