@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Day 5 Earth</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/dark/main.css" />
+  <script src="https://js.arcgis.com/4.29/"></script>
+  <style>
+    html, body, #viewDiv { height: 100%; margin: 0; background:#0a0a0a; }
+
+    .poster {
+      position:absolute; top:30px; right:30px;
+      text-align:right; color:#e9e6e3; letter-spacing:.08em;
+      font-family: ui-serif, Georgia, "Times New Roman", serif;
+      pointer-events:none;
+      text-shadow: 0 0 6px rgba(0,0,0,.6);
+    }
+    .poster h1 { margin:0; font-weight:600; font-size:32px; }
+    .poster h2 { margin:.2rem 0 0; font-weight:300; font-size:13px; opacity:.85; }
+    .poster small { display:block; margin-top:.4rem; font-size:11px; opacity:.7; }
+    #viewDiv::after {
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at center,
+        rgba(0,0,0,0) 40%,
+       rgba(0,0,0,.55) 100%);
+    }
+    #grain {
+      pointer-events:none;
+      position:fixed;
+      inset:0;
+      background-image:url("https://upload.wikimedia.org/wikipedia/commons/2/2c/Noise_texture.png");
+      opacity:0.05;
+      mix-blend-mode:overlay;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  <div id="grain"></div>
+  <div id="poster" class="poster">
+    <h2>EARTHQUAKES</h2>
+    <h1 id="poster-region"></h1>
+    <h2 id="poster-info"></h2>
+    <small>#30DayMapChallenge · Data: USGS ComCat</small>
+  </div>
+
+  <script>
+  require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/layers/GeoJSONLayer",
+    "esri/layers/TileLayer",
+    "esri/request",
+    "esri/geometry/support/webMercatorUtils"
+  ], function(Map, MapView, GeoJSONLayer, TileLayer, esriRequest, webMercatorUtils){
+
+    // --- 🔧 SETTINGS YOU CAN CHANGE ------------------
+    const config = {
+      regionName: "Japan",           // display name for poster
+      initialCenter: [137.7, 37.5],  // [lon, lat] (centered on Japan)
+      initialZoom: 5.5,              // map zoom
+      minMag: 5,                   // minimum magnitude
+      maxFeatures: 10000,            // limit for performance
+      startTime: "2005-01-01",       // start date
+      endTime: "NOW"                 // end date (text only)
+    };
+    // -------------------------------------------------
+
+    // --- Poster auto-update ---
+    document.getElementById("poster-region").textContent = config.regionName.toUpperCase();
+    document.getElementById("poster-info").textContent =
+      `${config.startTime.slice(0,4)} – ${config.endTime} · M ≥ ${config.minMag}`;
+
+    // --- Base map and view ---
+    const map = new Map({ basemap: "dark-gray-vector"});
+
+    const hillshade = new TileLayer({
+      portalItem: { id: "1b243539f4514b6ba35e7d995890db1d" },
+      opacity: 0.85,
+      blendMode: "multiply"
+    });
+    map.add(hillshade);
+
+    const view = new MapView({
+      container: "viewDiv",
+      map,
+      center: config.initialCenter,
+      zoom: config.initialZoom,
+      background: { color: [10,10,10,1] }
+    });
+
+    let quakesLayer = null;
+
+    view.when(async function(){
+
+      // Convert extent to lon/lat for query bbox
+      let geoExtent = webMercatorUtils.webMercatorToGeographic(view.extent);
+      let bbox = [
+        geoExtent.xmin.toFixed(2),
+        geoExtent.ymin.toFixed(2),
+        geoExtent.xmax.toFixed(2),
+        geoExtent.ymax.toFixed(2)
+      ];
+
+      // Build USGS query URL
+      const usgsUrl =
+        "https://earthquake.usgs.gov/fdsnws/event/1/query" +
+        `?format=geojson&starttime=${config.startTime}&minmagnitude=${config.minMag}` +
+        `&minlongitude=${bbox[0]}&minlatitude=${bbox[1]}` +
+        `&maxlongitude=${bbox[2]}&maxlatitude=${bbox[3]}` +
+        `&orderby=time&limit=${config.maxFeatures}`;
+
+      console.log("USGS request:", usgsUrl);
+
+      try {
+        const response = await esriRequest(usgsUrl, { responseType: "json" });
+        const geojson = response.data;
+
+        quakesLayer = new GeoJSONLayer({
+          url: URL.createObjectURL(
+            new Blob([JSON.stringify(geojson)], { type: "application/json" })
+          ),
+          renderer: {
+            type: "simple",
+            symbol: {
+              type: "simple-marker",
+              style: "circle",
+              size: 2,
+              color: [255, 240, 220, 0.85],
+              outline: { color: [0,0,0,0], width: 0 }
+            },
+            visualVariables: [
+              {
+                type: "size",
+                field: "mag",
+                stops: [
+                  { value: config.minMag,     size: 1.1 },
+                  { value: config.minMag + 1.0, size: 1.8 },
+                  { value: config.minMag + 2.0, size: 3.0 },
+                  { value: config.minMag + 3.0, size: 4.2 }
+                ]
+              },
+              {
+                type: "color",
+                field: "mag",
+                stops: [
+                  { value: config.minMag,       color: "#ffd7a0" }, // warm pale peach
+                  { value: config.minMag + 1.0, color: "#ffb15c" }, // golden orange
+                  { value: config.minMag + 2.0, color: "#ff7a00" }, // saturated orange
+                  { value: config.minMag + 3.0, color: "#ff3d00" }, // bright volcanic red-orange
+                  { value: config.minMag + 4.0, color: "#d10000" }  // deep ember red
+                ]
+              }
+            ]
+          },
+          // bloom: strength, size, threshold
+          effect: "bloom(1.3, 0.5px, 0) drop-shadow(0,0,2px)",
+          blendMode: "screen"
+        });
+
+        map.add(quakesLayer);
+
+      } catch (err) {
+        console.error("Error fetching earthquakes:", err);
+      }
+    });
+
+  });
+  </script>
+</body>
+</html>
